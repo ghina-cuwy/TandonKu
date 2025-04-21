@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.tandonku">
 
     <application
         android:allowBackup="true"
@@ -13,10 +14,9 @@
         android:theme="@style/Theme.TandonKu"
         tools:targetApi="31">
 
-        <activity android:name=".LoginActivity" /> <!-- ✅ Tambahkan ini -->
-
+        <!-- Jadikan LoginActivity sebagai launcher -->
         <activity
-            android:name=".RegisterActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,8 +24,11 @@
             </intent-filter>
         </activity>
 
+        <!-- RegisterActivity dibuka dari Login jika user belum punya akun -->
+        <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
-    </application>
+        <activity android:name=".ProfileActivity" />
 
+    </application>
 
 </manifest>
