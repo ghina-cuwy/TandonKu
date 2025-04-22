@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">TandonKu</string>
+    <string name="app_name">NamaApp</string>
+    <string name="title_daftar">Daftar akun</string>
+    <string name="hint_nama">Masukan Nama</string>
+    <string name="hint_email">Masukan Email</string>
+    <string name="hint_password">Masukan Password</string>
+    <string name="hint_telepon">Masukan Nomor Telepon</string>
+    <string name="btn_masuk">Masuk</string>
+    <string name="desc_kembali">Kembali</string>
 </resources>
