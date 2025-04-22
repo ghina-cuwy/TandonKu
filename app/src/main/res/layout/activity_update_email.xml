@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:text="Email saat ini"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txtCurrentEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E0E0E0"
+        android:padding="10dp" />
+
+    <TextView
+        android:layout_marginTop="24dp"
+        android:text="Email Lama"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/edtOldEmail"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:hint="Masukkan Email Lama"
+        android:inputType="textEmailAddress" />
+
+    <TextView
+        android:layout_marginTop="24dp"
+        android:text="Password untuk Verifikasi"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/edtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:hint="Masukkan Password"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:layout_marginTop="24dp"
+        android:text="Email Baru"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/edtNewEmail"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:hint="Masukkan Email Baru"
+        android:inputType="textEmailAddress" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:text="Kirim"
+        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

@@ -14,7 +14,7 @@
         android:theme="@style/Theme.TandonKu"
         tools:targetApi="31">
 
-        <!-- 1) LoginActivity jadi launcher -->
+        <!-- LoginActivity sebagai LAUNCHER -->
         <activity
             android:name=".LoginActivity"
             android:exported="true">
@@ -24,21 +24,35 @@
             </intent-filter>
         </activity>
 
-        <!-- 2) Register jika belum punya akun -->
-        <activity android:name=".RegisterActivity"
+        <!-- Register jika belum punya akun -->
+        <activity
+            android:name=".RegisterActivity"
             android:exported="false"/>
 
-        <!-- 3) Profil setelah login -->
-        <activity android:name=".ProfileActivity"
+        <!-- Profil setelah login -->
+        <activity
+            android:name=".ProfileActivity"
             android:exported="false"/>
 
-        <!-- 4) Halaman notifikasi (bisa dipanggil dari Profile) -->
-        <activity android:name=".NotificationActivity"
+        <!-- Halaman notifikasi -->
+        <activity
+            android:name=".NotificationActivity"
             android:exported="false"/>
 
-        <!-- 5) Detail notifikasi -->
-        <activity android:name=".DetailNotificationActivity"
+        <!-- Detail notifikasi -->
+        <activity
+            android:name=".DetailNotificationActivity"
             android:exported="false"/>
+
+        <!-- Update email -->
+        <activity
+            android:name=".UpdateEmailActivity"
+            android:exported="true" />
+
+        <!-- Update password -->
+        <activity
+            android:name=".UpdatePasswordActivity"
+            android:exported="true" />
 
     </application>
 

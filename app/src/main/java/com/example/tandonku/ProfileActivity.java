@@ -1,7 +1,6 @@
 package com.example.tandonku;
 
 import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -10,11 +9,15 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.*;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -30,7 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);  // pastikan layout yang benar dimuat
 
-        // Cek apakah ID sudah benar
+        // Inisialisasi komponen
         imageProfile = findViewById(R.id.imageProfile);
         emailItem = findViewById(R.id.emailItem);
         passwordItem = findViewById(R.id.passwordItem);
@@ -38,27 +41,39 @@ public class ProfileActivity extends AppCompatActivity {
         logoutItem = findViewById(R.id.logoutItem);
         textEmail = findViewById(R.id.textEmail);
 
-        // Dummy email
-        textEmail.setText("user@email.com");
+        // Ambil email dari akun yang sedang login
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String currentEmail = user.getEmail();
+            textEmail.setText(currentEmail);
 
-        // Tindakan klik untuk gambar profil
+            // Klik Email: pindah ke UpdateEmailActivity dan kirim email saat ini
+            emailItem.setOnClickListener(v -> {
+                Intent intent = new Intent(ProfileActivity.this, UpdateEmailActivity.class);
+                intent.putExtra("currentEmail", currentEmail);
+                startActivity(intent);
+            });
+        } else {
+            textEmail.setText("Tidak ada email");
+        }
+
+        // Klik gambar profil
         imageProfile.setOnClickListener(view -> showImageOptions());
 
-        // Tindakan klik untuk item lainnya
-        emailItem.setOnClickListener(v -> {
-            // pindah ke ganti email
-        });
-
+        // Klik Password: pindah ke halaman UpdatePasswordActivity
         passwordItem.setOnClickListener(v -> {
-            // pindah ke ganti password
+            Intent intent = new Intent(ProfileActivity.this, UpdatePasswordActivity.class);
+            startActivity(intent);
         });
 
+        // Klik ON/OFF
         powerItem.setOnClickListener(v -> {
             Toast.makeText(this, "Tombol ON/OFF ditekan", Toast.LENGTH_SHORT).show();
         });
 
+        // Klik Logout
         logoutItem.setOnClickListener(v -> {
-            // logout action
+            FirebaseAuth.getInstance().signOut(); // logout Firebase juga
             Intent i = new Intent(ProfileActivity.this, LoginActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(i);
@@ -73,7 +88,6 @@ public class ProfileActivity extends AppCompatActivity {
         builder.setTitle("Ubah Foto Profil")
                 .setItems(options, (dialog, which) -> {
                     if (which == 0) {
-                        // dari galeri
                         if (ContextCompat.checkSelfPermission(this,
                                 Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                             ActivityCompat.requestPermissions(this,
@@ -82,7 +96,6 @@ public class ProfileActivity extends AppCompatActivity {
                             pickImageFromGallery();
                         }
                     } else if (which == 1) {
-                        // hapus foto
                         imageProfile.setImageResource(R.drawable.ic_profile_placeholder);
                         imageUri = null;
                     }
