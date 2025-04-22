@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "785744950413",
+    "project_id": "banjir-ce8ae",
+    "storage_bucket": "banjir-ce8ae.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:785744950413:android:fd48964f68f51e77a79ec4",
+        "android_client_info": {
+          "package_name": "com.example.tandonku"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4f56wmi4O54zpXTjWT1gS44Bt72XDL3I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

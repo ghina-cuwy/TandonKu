@@ -2,7 +2,7 @@ package com.example.tandonku;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -10,16 +10,21 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText editName, editEmail, editPassword, editPhone;
     private Button buttonRegister;
     private ImageButton backButton;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        mAuth = FirebaseAuth.getInstance();
 
         editName = findViewById(R.id.editName);
         editEmail = findViewById(R.id.editEmail);
@@ -28,37 +33,36 @@ public class RegisterActivity extends AppCompatActivity {
         buttonRegister = findViewById(R.id.buttonRegister);
         backButton = findViewById(R.id.backButton);
 
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String nama = "alya";
-                String email = "alya25@gmail.com";
-                String password = "2005";
-                String phone = "12345678";
+        buttonRegister.setOnClickListener(v -> {
+            String nama = editName.getText().toString().trim();
+            String email = editEmail.getText().toString().trim();
+            String password = editPassword.getText().toString().trim();
+            String phone = editPhone.getText().toString().trim();
 
-
-                if (nama.isEmpty() || email.isEmpty() || password.isEmpty() || phone.isEmpty()) {
-                    Toast.makeText(RegisterActivity.this, "Harap isi semua data", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Simulasi proses pendaftaran
-                    Toast.makeText(RegisterActivity.this, "Pendaftaran berhasil!", Toast.LENGTH_SHORT).show();
-
-                    // Pindah ke halaman Login dan kirim email
-                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                    intent.putExtra("email_terdaftar", email); // KIRIM email ke LoginActivity
-                    startActivity(intent);
-                    finish(); // supaya user gak balik ke sini
-                }
+            if (TextUtils.isEmpty(nama) || TextUtils.isEmpty(email)
+                    || TextUtils.isEmpty(password) || TextUtils.isEmpty(phone)) {
+                Toast.makeText(this, "Harap isi semua data!", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            // Register ke Firebase Authentication
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(this, "Pendaftaran berhasil!", Toast.LENGTH_SHORT).show();
+
+                            // Setelah register, kirim email ke LoginActivity
+                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                            intent.putExtra("email_terdaftar", email);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            String errorMsg = task.getException() != null ? task.getException().getMessage() : "Pendaftaran gagal.";
+                            Toast.makeText(this, "Gagal daftar: " + errorMsg, Toast.LENGTH_LONG).show();
+                        }
+                    });
         });
 
-
-
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish(); // Kembali ke activity sebelumnya
-            }
-        });
+        backButton.setOnClickListener(v -> finish());
     }
 }

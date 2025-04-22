@@ -13,7 +13,7 @@
             android:id="@+id/backButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@android:drawable/ic_media_previous"
+            android:src="@drawable/ic_arrow_back"
             android:background="?android:selectableItemBackgroundBorderless"
             android:contentDescription="@string/desc_kembali"
             android:padding="8dp" />

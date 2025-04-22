@@ -20,7 +20,7 @@
 
     <TextView
         android:layout_marginTop="24dp"
-        android:text="Ganti email"
+        android:text="Email Lama"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
@@ -28,23 +28,42 @@
     <EditText
         android:id="@+id/edtOldEmail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Masukan email saat ini"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp" />
+        android:layout_height="66dp"
+        android:hint="Masukkan Email Lama"
+        android:inputType="textEmailAddress" />
+
+    <TextView
+        android:layout_marginTop="24dp"
+        android:text="Password untuk Verifikasi"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/edtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="67dp"
+        android:hint="Masukkan Password"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:layout_marginTop="24dp"
+        android:text="Email Baru"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/edtNewEmail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Masukan email baru"
-        android:inputType="textEmailAddress"
-        android:minHeight="48dp" />
+        android:layout_height="72dp"
+        android:hint="Masukkan Email Baru"
+        android:inputType="textEmailAddress" />
 
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:text="Kirim"
         android:layout_marginTop="24dp"
-        android:text="Kirim" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

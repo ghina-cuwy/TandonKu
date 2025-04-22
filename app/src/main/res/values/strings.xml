@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NamaApp</string>
+    <string name="app_name">TandonKu</string>
     <string name="title_daftar">Daftar akun</string>
     <string name="hint_nama">Masukan Nama</string>
     <string name="hint_email">Masukan Email</string>
